@@ -3,53 +3,55 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-    System.out.println("CADASTRO DIGITAL");
 
-        System.out.println("Quantas pessoas deseja cadastrar?");
-        int quantidadeDePessoas = scanner.nextInt();
+        //interface system
 
-            for (int i = 1; i <= quantidadeDePessoas; i++){
+        System.out.println("Cadastro Digital");
+        System.out.println("1 - Cadastrar");
+        System.out.println("2 - Fazer login");
+        System.out.println("3 - Sair");
 
-            scanner.nextLine();
+        int options = 1;
+        scanner.nextLine();
 
-            System.out.println("Insira seu nome: ");
-                String inserirNome = scanner.nextLine();
-            System.out.println("Insira sua inicial: ");
-                char inserirInicial = scanner.next().charAt(0);
-            System.out.println("Insira sua idade: ");
-                int inserirIdade = scanner.nextInt();
-            System.out.println("Insira sua altura: ");
-                double inserirAltura = scanner.nextDouble();
-            System.out.println("Você estuda java?: ");
-                boolean inserirJava = scanner.nextBoolean();
+        //register (CPF and Password)
 
-            System.out.println("DADOS CADASTRADOS ABAIXO:");
-            System.out.println("Nome: " + inserirNome);
-            System.out.println("Inicial: " + inserirInicial);
-            System.out.println("Idade: " + inserirIdade);
-            System.out.println("Altura: " + inserirAltura);
-            System.out.println("Estuda java?: " + inserirJava);
+        if (options == 1) {
+            System.out.println("Insira seus dados: ");
 
-            if (inserirIdade >= 18) {
-                System.out.println("ACESSO AUTORIZADO! seja bem vindo(a)! " + inserirNome);
-            } else {
-                System.out.println("ACESSO NEGADO! pessoa menor de idade");
+            System.out.println("Digite seu CPF: ");
+            String insertCpf = scanner.nextLine();
+            System.out.println("Digite sua senha: ");
+            String insertPsswrd = scanner.nextLine();
+            boolean validCpf = insertCpf.length() == 11 && insertCpf.matches("[0-9]+");
+            boolean validPsswrd = insertPsswrd.length() >= 8;
+            if (validCpf && validPsswrd) {
+                System.out.println("Cadastro realizado com sucesso!");
+
+                //remake register for validation (login system)
+
+                System.out.println("Digite novamente seu CPF: ");
+                String loginCpf = scanner.nextLine();
+                System.out.println("Digite novamente sua senha: ");
+                String loginPsswrd = scanner.nextLine();
+
+                if (insertCpf.equals(loginCpf) && insertPsswrd.equals(loginPsswrd)) {
+                    System.out.println("Login correto!");
+                } else {
+                    System.out.println("Login incorreto!");
+                }
             }
-
-            if (inserirAltura >= 1.70) {
-                System.out.println("Você tem 1,70m ou mais");
-            } else {
-                System.out.println("Você tem menos de 1,70m");
-            }
-
-            if (inserirJava) {
-                System.out.println("Continue estudado Java!");
-            } else {
-                System.out.println("Que tal começar a estudar Java?");
-            }
-
-            double decimal = (double) inserirIdade;
-            System.out.println("idade em double: " + decimal);
+        } else {
+            System.out.println("Cadastro inválido!");
         }
     }
 }
+
+
+/*
+features to implement:
+1 - fix menu loop (while)
+2 - implement model system
+
+last updated: 2026-11-05
+ */
